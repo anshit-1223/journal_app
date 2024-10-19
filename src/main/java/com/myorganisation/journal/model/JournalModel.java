@@ -1,16 +1,21 @@
 package com.myorganisation.journal.model;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document(collation = "journal_entries")
 public class JournalModel {
 
-    private Long id;
+    @Id
+    private String id;
     private String title;
     private String description;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
