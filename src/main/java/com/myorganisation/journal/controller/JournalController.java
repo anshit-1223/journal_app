@@ -39,7 +39,6 @@ public class JournalController {
 
     @PutMapping("{id}")
     public JournalModel updateJournalModelById(@PathVariable Long id, @RequestBody JournalModel journalModel){
-
         return null;
     }
 }
