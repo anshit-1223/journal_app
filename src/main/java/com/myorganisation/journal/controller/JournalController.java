@@ -16,9 +16,9 @@ public class JournalController {
     private JournalService journalService;
 
     @GetMapping
-    public List<JournalModel> getAllJournal(){
-        
-        return null;
+    public String getAllJournal(){
+     journalService.getAllEntry();
+    return "Fetched";
     }
 
     @PostMapping
