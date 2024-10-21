@@ -20,4 +20,11 @@ public class JournalService {
     public List<JournalModel> getAllEntry(){
         return journalRepository.findAll();
     }
+
+    public List<JournalModel> getEntryById(String MyId){
+        return journalRepository.findById(MyId);
+    }
+    public void deleteEntry(){
+
+    }
 }

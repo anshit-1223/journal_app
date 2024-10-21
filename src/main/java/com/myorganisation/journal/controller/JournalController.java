@@ -28,12 +28,12 @@ public class JournalController {
     }
 
     @GetMapping("{id}")
-    public JournalModel getJournalModelById(@PathVariable Long id){
-        return null;
+    public List<JournalModel> getJournalModelById(@PathVariable String id){
+        return journalService.getEntryById(id);
     }
 
     @DeleteMapping("{id}")
-    public JournalModel deleteJournalModelById(@PathVariable Long id){
+    public JournalModel deleteJournalModelById(@PathVariable String id){
         return null;
     }
 
