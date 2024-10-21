@@ -34,6 +34,7 @@ public class JournalController {
 
     @DeleteMapping("{id}")
     public JournalModel deleteJournalModelById(@PathVariable String id){
+        journalService.deleteEntry(id);
         return null;
     }
 
