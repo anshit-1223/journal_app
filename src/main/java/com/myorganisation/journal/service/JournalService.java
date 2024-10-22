@@ -14,8 +14,9 @@ public class JournalService {
     @Autowired
     private JournalRepository journalRepository;
 
-    public void saveEntry(JournalModel journalModel){
+    public JournalModel saveEntry(JournalModel journalModel){
         journalRepository.save(journalModel);
+        return journalModel;
     }
 
     public List<JournalModel> getAllEntry(){
@@ -30,7 +31,4 @@ public class JournalService {
 
     }
 
-    public JournalModel updateEntry(String MyId,JournalModel journalModel){
-
-    }
 }
