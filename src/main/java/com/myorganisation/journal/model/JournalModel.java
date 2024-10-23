@@ -15,6 +15,4 @@ public class JournalModel {
     private String title;
     private String description;
     private LocalDateTime dateTime;
-
-
 }
