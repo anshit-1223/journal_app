@@ -4,10 +4,14 @@ import com.myorganisation.journal.model.JournalModel;
 import com.myorganisation.journal.service.JournalService;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 
 @RestController
@@ -29,8 +33,12 @@ public class JournalController {
     }
 
     @GetMapping("{id}")
-    public JournalModel getJournalModelById(@PathVariable ObjectId id){
-        return journalService.getEntryById(String.valueOf(id)).orElse(null);
+    public ResponseEntity<JournalModel> getJournalModelById(@PathVariable ObjectId id){
+        Optional<JournalModel> journalModel= journalService.getEntryById(String.valueOf(id));
+        if(journalModel.isPresent()){
+            return new ResponseEntity<>(journalModel.get(), HttpStatusCode.valueOf(200));
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @DeleteMapping("{id}")
