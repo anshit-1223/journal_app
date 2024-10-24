@@ -27,9 +27,10 @@ public class JournalController {
     }
 
     @PostMapping
-    public JournalModel createJournal(@RequestBody JournalModel journalModel){
+    public ResponseEntity<JournalModel> createJournal(@RequestBody JournalModel journalModel){
         journalModel.setDateTime(LocalDateTime.now());
-        return journalService.saveEntry(journalModel);
+        journalService.saveEntry(journalModel);
+        return new ResponseEntity<>(journalModel,HttpStatusCode.valueOf(201));
     }
 
     @GetMapping("{id}")
@@ -42,13 +43,13 @@ public class JournalController {
     }
 
     @DeleteMapping("{id}")
-    public JournalModel deleteJournalModelById(@PathVariable ObjectId id){
+    public ResponseEntity<?> deleteJournalModelById(@PathVariable ObjectId id){
         journalService.deleteEntry(String.valueOf(id));
-        return null;
+        return new ResponseEntity(HttpStatus.NO_CONTENT);
     }
 
     @PutMapping("{id}")
-    public JournalModel updateJournalModelById(@PathVariable ObjectId id, @RequestBody JournalModel journalModel){
+    public ResponseEntity<?> updateJournalModelById(@PathVariable ObjectId id, @RequestBody JournalModel journalModel){
         JournalModel old =journalService.getEntryById(String.valueOf(id)).orElse(null);
         if(old!= null){
             old.setTitle(journalModel.getTitle()!= null && !journalModel.getTitle().equals("")? journalModel.getTitle() : old.getTitle());
@@ -58,8 +59,10 @@ public class JournalController {
             else{
                 old.getDescription();
             }
+            journalService.saveEntry(old);
+            return new ResponseEntity<>(old,HttpStatus.OK);
         }
-        journalService.saveEntry(old);
-        return old;
+
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 }
