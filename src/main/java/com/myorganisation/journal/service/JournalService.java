@@ -29,8 +29,6 @@ public class JournalService {
     public void deleteEntry(String MyId){
         journalRepository.deleteById(MyId);
 
-
-
     }
 
 }
