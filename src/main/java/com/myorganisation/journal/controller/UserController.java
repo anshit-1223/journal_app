@@ -11,5 +11,7 @@ public class UserController {
     @GetMapping
     public String getAllUser(){
         return "Users List";
+
+
     }
 }
