@@ -13,5 +13,8 @@ public class UserController {
         return "Users List";
     }
 
-
+    @GetMapping("/$id")
+    public int getUserById(int id){
+        return id;
+    }
 }
