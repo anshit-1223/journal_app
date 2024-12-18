@@ -1,20 +1,24 @@
 package com.myorganisation.journal.controller;
+import com.myorganisation.journal.model.UserModel;
+import com.myorganisation.journal.service.UserService;
+import org.springframework.web.bind.annotation.*;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import java.util.List;
 
 @RestController
 @RequestMapping("/user")
 public class UserController {
 
+    private UserService userService;
+
     @GetMapping
-    public String getAllUser(){
-        return "Users List";
+    public List getAllUsers(){
+        return userService.getAll();
     }
 
-    @GetMapping("/$id")
-    public int getUserById(int id){
-        return id;
+    @PostMapping()
+    public void createUser(@RequestBody UserModel user){
+        userService.saveEntry(user);
+
     }
 }
