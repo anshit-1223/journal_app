@@ -1,6 +1,7 @@
 package com.myorganisation.journal.model;
 
 import lombok.Data;
+import lombok.NonNull;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,6 +13,7 @@ public class JournalModel {
 
     @Id
     private String id;
+    @NonNull
     private String title;
     private String description;
     private LocalDateTime dateTime;
